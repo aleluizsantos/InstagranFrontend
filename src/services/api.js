@@ -1,7 +1,8 @@
 import axios from 'axios';
+import baseUrl from './baseUrl';
 
 const api = axios.create({
-    baseURL: 'https://advertiseimage.herokuapp.com/',
+    baseURL: baseUrl,
 });
 
 export default api;

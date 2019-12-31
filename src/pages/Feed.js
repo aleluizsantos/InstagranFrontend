@@ -8,6 +8,8 @@ import more from '../assets/more.svg';
 import like from '../assets/like.svg';
 import comment from '../assets/comment.svg';
 import send from '../assets/send.svg';
+import baseUrl from '../services/baseUrl'
+
 
 class Feed extends Component {
     //Criar um Estado para armazenar as informações recebidas o api.get
@@ -24,7 +26,8 @@ class Feed extends Component {
     }
 
     registerToSocket = () => {
-        const socket = io('https://advertiseimage.herokuapp.com');
+        
+        const socket = io(baseUrl);
         
         socket.on('post', newPost => {
             this.setState({ feed: [newPost, ...this.state.feed] })
@@ -51,7 +54,7 @@ class Feed extends Component {
     render() {
         return (
             <section id="post-list">
-
+            
                 { this.state.feed.map(post => (
                     <article key={post._id}>
                     <header>
@@ -61,7 +64,7 @@ class Feed extends Component {
                         </div>
                         <img src={more} alt="mais" />
                     </header>
-                    <img src={`https://advertiseimage.herokuapp.com/files/${post.image}`} alt="ingrid"/>
+                    <img src={`${baseUrl}/files/${post.image}`} alt="ingrid"/>
 
                     <footer>
                         <div className="actions">
